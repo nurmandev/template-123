@@ -14,6 +14,8 @@ import { getCSSVariables } from '../lib/helpers';
 import { Colors, Fonts } from '../types';
 import { BackgroundProps } from '../backgrounds';
 import { customSlideTransition } from '../transitions/SlidePresentation';
+import { fade } from '../transitions/FadePresentation';
+import Glow from '../components/Glow';
 
 export const MainSchema = z.object({
   audioVolume: z.number(),
@@ -121,7 +123,12 @@ const Main: React.FC<MainProps> = ({
           <TransitionSeries.Sequence durationInFrames={scene6Duration}>
             <Scene6 {...scene6Props} background={background} />
           </TransitionSeries.Sequence>
+          <TransitionSeries.Transition
+            presentation={fade()}
+            timing={linearTiming({ durationInFrames: transitionDuration })}
+          />
         </TransitionSeries>
+        <Glow />
       </AbsoluteFill>
     </LoadFonts>
   );

@@ -10,6 +10,7 @@ import { TitleTextFromRight } from '../components/animations/TitleTextFromRight'
 import { HEIGHT, WIDTH } from '../lib/consts';
 import Cross from '../components/Cross';
 import ImageOverlay from '../components/ImageOverlay';
+import StarDustZoomIn from '../components/StarDustZoomIn';
 
 export const scene4Schema = z.object({
   logo: z.string(),
@@ -31,7 +32,7 @@ const Scene4: React.FC<Scene4Props> = (props) => {
   return (
     <AbsoluteFill>
       <ImageOverlay img={props.img} />
-
+      <StarDustZoomIn origin={{ x: WIDTH * 0.3, y: HEIGHT * 0.4 }} maxParticleSize={10} speed={3} />
       <Logo logo={props.logo} x={WIDTH * 0.1} y={HEIGHT * 0.9} size={100} delay={20} />
       <Cross delay={50} x={WIDTH * 0.84} y={HEIGHT * 0.08} />
       <Cross delay={55} x={WIDTH * 0.42} y={HEIGHT * 0.08} />

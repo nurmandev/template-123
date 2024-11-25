@@ -3,11 +3,11 @@ import { z } from 'zod';
 import { useTextSplitter } from '../lib/useTextSplitter';
 import { colorVar } from '../lib/helpers';
 import { TitleTextFromRight } from '../components/animations/TitleTextFromRight';
-import { Background } from '../components/Background';
 import { HEIGHT, WIDTH } from '../lib/consts';
 import { BackgroundProps } from '../backgrounds';
 import Logo from '../components/Logo';
 import Cross from '../components/Cross';
+import StarDustZoomIn from '../components/StarDustZoomIn';
 
 export const scene6Schema = z.object({
   logo: z.string(),
@@ -45,9 +45,8 @@ const Scene6: React.FC<Scene6Props> = (props) => {
         textAlign: 'center',
       }}
     >
-      {/* The background component is always the same setup like this.
-      Get's it's input from the root */}
-      <Background {...props.background} />
+      <StarDustZoomIn speed={2} maxParticleSize={10} />
+
       <Logo logo={props.logo} size={250} x={WIDTH * 0.5} y={HEIGHT * 0.45} delay={30} />
       <Cross delay={17} x={WIDTH * 0.3} y={HEIGHT * 0.75} />
       <Cross delay={30} x={WIDTH * 0.6} y={HEIGHT * 0.85} />
