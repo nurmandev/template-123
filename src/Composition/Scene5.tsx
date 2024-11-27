@@ -46,6 +46,7 @@ const Scene5: React.FC<Scene5Props> = (props) => {
         end={{ x: WIDTH * 0.1, y: HEIGHT * 0.15 }}
         startRotation={45}
         delay={4}
+        strokeDirection="right-left"
       />
 
       <div

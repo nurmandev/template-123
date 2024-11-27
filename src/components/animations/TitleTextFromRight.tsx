@@ -82,6 +82,7 @@ export const TitleTextFromRight = ({
                       display: 'inline-block',
                       transform: `translateY(${translateY}px)`,
                       opacity,
+                      fontStyle: 'italic',
                     }}
                   >
                     {char}

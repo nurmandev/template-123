@@ -19,7 +19,7 @@ const Glow: React.FC<LavaLampProps> = ({
     []
   );
 
-  const opacity = interpolate(frame, [0, 100], [0, 0.5], {
+  const opacity = interpolate(frame, [0, 100], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });

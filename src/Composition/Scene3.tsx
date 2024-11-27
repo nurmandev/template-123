@@ -45,6 +45,7 @@ const Scene3: React.FC<Scene3Props> = (props) => {
         start={{ x: WIDTH * 0.1, y: HEIGHT * 1.15 }}
         end={{ x: WIDTH * 0.1, y: HEIGHT * 0.15 }}
         startRotation={45}
+        strokeDirection="right-left"
       />
 
       <div
