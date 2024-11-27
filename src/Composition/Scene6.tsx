@@ -8,6 +8,7 @@ import { BackgroundProps } from '../backgrounds';
 import Logo from '../components/Logo';
 import Cross from '../components/Cross';
 import StarDustZoomIn from '../components/StarDustZoomIn';
+import Glow from '../components/Glow';
 
 export const scene6Schema = z.object({
   logo: z.string(),
@@ -43,10 +44,29 @@ const Scene6: React.FC<Scene6Props> = (props) => {
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
+        background: 'black',
       }}
     >
-      <StarDustZoomIn speed={2} maxParticleSize={10} />
+      <AbsoluteFill
+        style={{
+          background: '#161515',
+          opacity: 0.8,
+        }}
+      />
 
+      <Glow color="rgba(230,0, 0, 0.8)" x={WIDTH * 0.7} y={0} startAt={100} />
+
+      <Glow
+        color="rgba(255,255, 255, 1)"
+        radius={800}
+        startAt={1}
+        x={0}
+        y={HEIGHT * 0.5}
+        overlayOpacity={0.3}
+      />
+      {/* <Glow color="rgba(255,255, 255, 0.8)" radius={500} startAt={1} x={0} y={HEIGHT * 0.7} /> */}
+
+      <StarDustZoomIn speed={0.5} maxParticleSize={10} />
       <Logo logo={props.logo} size={250} x={WIDTH * 0.5} y={HEIGHT * 0.45} delay={30} />
       <Cross delay={17} x={WIDTH * 0.3} y={HEIGHT * 0.75} />
       <Cross delay={30} x={WIDTH * 0.6} y={HEIGHT * 0.85} />
@@ -59,7 +79,7 @@ const Scene6: React.FC<Scene6Props> = (props) => {
           color: colorVar('primaryText'),
         }}
       >
-        <TitleTextFromRight text={titleSplit.text} startAt={10} />
+        <TitleTextFromRight text={titleSplit.text} startAt={10} y={-200} />
       </div>
 
       <div
@@ -68,7 +88,7 @@ const Scene6: React.FC<Scene6Props> = (props) => {
           color: colorVar('primaryText'),
         }}
       >
-        <TitleTextFromRight text={subtitleSplit.text} startAt={18} />
+        <TitleTextFromRight text={subtitleSplit.text} startAt={18} y={-100} />
       </div>
     </AbsoluteFill>
   );

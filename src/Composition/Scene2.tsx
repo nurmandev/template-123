@@ -11,6 +11,7 @@ import { HEIGHT, WIDTH } from '../lib/consts';
 import Cross from '../components/Cross';
 import ImageOverlay from '../components/ImageOverlay';
 import StarDustZoomIn from '../components/StarDustZoomIn';
+import Glow from '../components/Glow';
 
 export const scene2Schema = z.object({
   logo: z.string(),
@@ -31,8 +32,18 @@ const Scene2: React.FC<Scene2Props> = (props) => {
 
   return (
     <AbsoluteFill>
-      <ImageOverlay img={props.img} />
-      <StarDustZoomIn origin={{ x: WIDTH * 0.3, y: HEIGHT * 0.4 }} maxParticleSize={10} speed={3} />
+      <ImageOverlay img={props.img} showStroke />
+      <Glow color="rgba(230,0, 0, 0.8)" x={WIDTH * 0.7} y={0} startAt={1} />
+
+      <Glow
+        color="rgba(255,255, 255, 1)"
+        radius={800}
+        startAt={1}
+        x={WIDTH * 0.9}
+        y={HEIGHT * 0.5}
+        overlayOpacity={0.5}
+      />
+      <StarDustZoomIn origin={{ x: WIDTH * 0.3, y: HEIGHT * 0.4 }} maxParticleSize={10} speed={2} />
       <Logo logo={props.logo} x={WIDTH * 0.93} y={HEIGHT * 0.1} size={100} />
 
       <Cross delay={50} x={WIDTH * 0.84} y={HEIGHT * 0.08} />

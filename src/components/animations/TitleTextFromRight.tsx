@@ -51,6 +51,7 @@ export const TitleTextFromRight = ({
               margin: 0,
               position: 'relative',
               display: 'inline-block',
+              lineHeight: '80px',
             }}
           >
             {line.split('').map((char, charIndex) => {

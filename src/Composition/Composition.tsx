@@ -16,6 +16,7 @@ import { BackgroundProps } from '../backgrounds';
 import { customSlideTransition } from '../transitions/SlidePresentation';
 import { fade } from '../transitions/FadePresentation';
 import Glow from '../components/Glow';
+import { WIDTH } from '../lib/consts';
 
 export const MainSchema = z.object({
   audioVolume: z.number(),
@@ -82,7 +83,7 @@ const Main: React.FC<MainProps> = ({
         <Audio src={staticFile('music.mp3')} volume={audioVolume} />
         <TransitionSeries>
           <TransitionSeries.Transition
-            presentation={customSlideTransition({})}
+            presentation={customSlideTransition({ direction: 'top' })}
             timing={linearTiming({ durationInFrames: transitionDuration })}
           />
           <TransitionSeries.Sequence durationInFrames={scene1Duration}>
@@ -117,7 +118,7 @@ const Main: React.FC<MainProps> = ({
             <Scene5 {...scene5Props} background={background} />
           </TransitionSeries.Sequence>
           <TransitionSeries.Transition
-            presentation={customSlideTransition({})}
+            presentation={customSlideTransition({ direction: 'top' })}
             timing={linearTiming({ durationInFrames: transitionDuration })}
           />
           <TransitionSeries.Sequence durationInFrames={scene6Duration}>
@@ -128,7 +129,6 @@ const Main: React.FC<MainProps> = ({
             timing={linearTiming({ durationInFrames: transitionDuration })}
           />
         </TransitionSeries>
-        <Glow />
       </AbsoluteFill>
     </LoadFonts>
   );

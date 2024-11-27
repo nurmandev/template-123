@@ -8,6 +8,7 @@ import { BackgroundProps } from '../backgrounds';
 import Logo from '../components/Logo';
 import Cross from '../components/Cross';
 import StarDustZoomIn from '../components/StarDustZoomIn';
+import Glow from '../components/Glow';
 
 export const scene1Schema = z.object({
   logo: z.string(),
@@ -45,6 +46,25 @@ const Scene1: React.FC<Scene1Props> = (props) => {
         textAlign: 'center',
       }}
     >
+      <AbsoluteFill
+        style={{
+          background: '#161515',
+          opacity: 0.8,
+        }}
+      />
+
+      <Glow color="rgba(230,0, 0, 0.8)" x={WIDTH * 0.7} y={0} startAt={100} />
+
+      <Glow
+        color="rgba(255,255, 255, 1)"
+        radius={800}
+        startAt={1}
+        x={0}
+        y={HEIGHT * 0.5}
+        overlayOpacity={0.3}
+      />
+      {/* <Glow color="rgba(255,255, 255, 0.8)" radius={500} startAt={1} x={0} y={HEIGHT * 0.7} /> */}
+
       <StarDustZoomIn speed={0.5} maxParticleSize={10} />
       <Logo logo={props.logo} size={250} x={WIDTH * 0.5} y={HEIGHT * 0.45} delay={30} />
       <Cross delay={17} x={WIDTH * 0.3} y={HEIGHT * 0.75} />

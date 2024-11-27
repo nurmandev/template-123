@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from 'remotion';
 
 interface StarDustZoomInProps {
   origin?: { x: number; y: number }; // Optional origin point for the particles
@@ -55,6 +55,7 @@ const StarDustZoomIn: React.FC<StarDustZoomInProps> = ({
         );
         const distance = interpolate(progress, [0, 1], [particle.distance, particle.distance * 2], {
           extrapolateRight: 'clamp',
+          easing: Easing.out(Easing.ease),
         });
         const x = centerX + Math.cos(particle.angle) * distance;
         const y = centerY + Math.sin(particle.angle) * distance;
@@ -62,9 +63,11 @@ const StarDustZoomIn: React.FC<StarDustZoomInProps> = ({
         // Calculate scale and opacity for each particle
         const scale = interpolate(progress, [0, 1], [0.5, 1.5], {
           extrapolateRight: 'clamp',
+          easing: Easing.out(Easing.ease),
         });
-        const opacity = interpolate(progress, [0, 0.5, 1], [0, 1, 0], {
+        const opacity = interpolate(progress, [0, 0.25, 0.75, 1], [0, 1, 1, 0], {
           extrapolateRight: 'clamp',
+          easing: Easing.out(Easing.ease),
         });
 
         return (

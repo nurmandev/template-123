@@ -5,7 +5,7 @@ import { AbsoluteFill, Easing, interpolate } from 'remotion';
 import { HEIGHT, WIDTH } from '../lib/consts';
 
 export type CustomShapeChangeProps = {
-  direction?: 'bottom-right' | 'bottom-left';
+  direction?: 'bottom-right' | 'bottom-left' | 'top';
 };
 
 const SlidePresentation: React.FC<TransitionPresentationComponentProps<CustomShapeChangeProps>> = ({
@@ -47,6 +47,15 @@ const SlidePresentation: React.FC<TransitionPresentationComponentProps<CustomSha
         L ${width} ${offset + height / 2}
         Z
       `;
+    }
+    if (direction === 'top') {
+      return `
+    M 0 0
+    L ${width} 0
+    L ${width} ${height - offset}
+    L 0 ${height - offset}
+    Z
+  `;
     }
 
     // Default path (fallback)

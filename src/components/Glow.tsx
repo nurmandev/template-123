@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { AbsoluteFill, interpolate, useCurrentFrame } from 'remotion';
 
 const WIDTH = 1920;
@@ -7,19 +7,29 @@ const HEIGHT = 1080;
 interface LavaLampProps {
   backgroundColor?: string;
   overlayOpacity?: number;
+  color: string;
+  x: number;
+  y: number;
+  startAt?: number;
+  radius?: number;
 }
 
 const Glow: React.FC<LavaLampProps> = ({
   backgroundColor = 'transparent',
   overlayOpacity = 0.7,
+  color,
+  x,
+  y,
+  radius = 300,
+  startAt = 100,
 }) => {
   const frame = useCurrentFrame();
-  const ellipses = useMemo(
-    () => [{ seed: 3, baseRx: 300, baseRy: 280, color: 'rgba(230,0, 0, 0.8)' }],
-    []
-  );
+  // const ellipses = useMemo(
+  //   () => [{ seed: 3, baseRx: 300, baseRy: 280, color: 'rgba(230,0, 0, 0.8)' }],
+  //   []
+  // );
 
-  const opacity = interpolate(frame, [0, 100], [0, 1], {
+  const opacity = interpolate(frame, [0, startAt], [0, overlayOpacity], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -53,17 +63,7 @@ const Glow: React.FC<LavaLampProps> = ({
         <rect x="0" y="0" width={WIDTH} height={HEIGHT} fill={backgroundColor} />
 
         <g filter="url(#bbblurry-filter) ">
-          {ellipses.map((ellipse, index) => (
-            <ellipse
-              key={index}
-              rx={ellipse.baseRx}
-              ry={ellipse.baseRy}
-              cx={WIDTH * 0.7}
-              cy={0}
-              fill={ellipse.color}
-              opacity={opacity}
-            />
-          ))}
+          <ellipse rx={radius} ry={radius} cx={x} cy={y} fill={color} opacity={opacity} />
         </g>
       </svg>
     </AbsoluteFill>

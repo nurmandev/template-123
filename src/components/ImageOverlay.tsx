@@ -3,9 +3,10 @@ import { WIDTH } from '../lib/consts';
 
 interface LogoProps {
   img: string;
+  showStroke?: boolean;
 }
 
-const ImageOverlay = ({ img }: LogoProps) => {
+const ImageOverlay = ({ img, showStroke = false }: LogoProps) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
 
@@ -36,21 +37,23 @@ const ImageOverlay = ({ img }: LogoProps) => {
           }}
         />
       </AbsoluteFill>
-      <div
-        style={{
-          position: 'absolute',
-          top: -WIDTH / 2,
-          left: blurStrokeX,
-          width: WIDTH * 0.1,
-          height: WIDTH * 2, // Stroke thickness
-          background:
-            'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%)',
-          filter: 'blur(60px)', // Gaussian blur
-          transform: `rotate(20deg)`, // Diagonal stroke
-          pointerEvents: 'none',
-          opacity,
-        }}
-      />
+      {showStroke && (
+        <div
+          style={{
+            position: 'absolute',
+            top: -WIDTH / 2,
+            left: blurStrokeX,
+            width: WIDTH * 0.1,
+            height: WIDTH * 2, // Stroke thickness
+            background:
+              'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%)',
+            filter: 'blur(60px)', // Gaussian blur
+            transform: `rotate(20deg)`, // Diagonal stroke
+            pointerEvents: 'none',
+            opacity,
+          }}
+        />
+      )}
       <AbsoluteFill
         style={{
           background: '#161515',
